@@ -1,0 +1,16 @@
+.container_calculator {
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+    align-items: center;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.submit {
+        display: flex;
+        margin-top: 1rem;
+    
+}
