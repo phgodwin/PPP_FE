@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 function DisplayBudget() {
 
-    const [incomes, setIncomes] = useState();
-    const [outgoings, setOutgoings] = useState();
+    const [incomes, setIncomes] = useState([]);
+    const [outgoings, setOutgoings] = useState([]);
 
     function getDisposableIncome() {
         axios.get("http://localhost:3031/Income")
@@ -16,16 +16,6 @@ function DisplayBudget() {
 
 
     }
-
-    // let totalDisposableIncome = 0;
-    // let totalIncome = 0;
-
-    // for (const income of incomes) {
-    //     totalIncome = income.takeHomePay + income.additionalIncome;
-    //     totalDisposableIncome += totalIncome;
-
-    // }
-
 
     function getOutgoings() {
         axios.get("http://localhost:3031/Outgoings")
@@ -42,17 +32,25 @@ function DisplayBudget() {
     useEffect(() => getOutgoings(), [outgoings]);
 
 
-
+    const totalOutgoings = outgoings.reduce((total, outgoing) => total + outgoing.cost, 0);
+    const totalIncome = incomes.reduce((total, income) => total + income.amount, 0);
+    const disposableIncome = totalIncome - totalOutgoings;
 
 
 
     return (
-        <div>
+        <div id="budgetcontainer">
+            <div id="budgetdisplay">
             <h2>Current Outgoings</h2>
             <ul>
                 {outgoings.map((outgoing) =>
                     <li>{outgoing.name} : {outgoing.cost}</li>)}
             </ul>
+            </div>
+            <div id="budgetdisplay">
+            <h2>Disposable Income</h2>
+            <p>{disposableIncome}</p>
+        </div>
         </div>
 
 

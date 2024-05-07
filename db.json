@@ -11,6 +11,16 @@
       "name": "Rent",
       "cost": 750,
       "id": 1
+    },
+    {
+      "name": "Electric",
+      "cost": "180",
+      "id": 2
+    },
+    {
+      "name": "Wifi",
+      "cost": "25",
+      "id": 3
     }
   ]
 }

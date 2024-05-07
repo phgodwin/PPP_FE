@@ -57,25 +57,43 @@ body {
   font-size: 20px;
 }
 
-.form-container {
+#budgetcontainer{
+  display: flex;
+  justify-content: space-around;
+}
+
+#budgetdisplay {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: white;
-  max-width: 80%;
+  max-width: 70%;
   margin: auto;
+  padding: 25px;
+  border-radius: 8px;
 }
 
-.income-form, .outgoing-form {
-  margin: 10px;
+#budgetentriescontainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  max-width: 70%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
 }
 
-.income-form input, .outgoing-form input {
-  margin-left: 10px;
-}
+#budgetform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  max-width: 70%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
 
-.income-form button, .outgoing-form button {
-  margin-left: 10px;
 }

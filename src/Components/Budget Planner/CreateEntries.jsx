@@ -33,8 +33,8 @@ function CreateEntries() {
     };
     return ( 
 
-<>
-        <form onSubmit={handleSubmitPay}>
+<div id="budgetentriescontainer">
+        <form id="budgetform" onSubmit={handleSubmitPay}>
             <label>
                 Take Home Pay:
                 <input type="number" value={takeHomePay} onChange={e => setTakeHomePay(e.target.value)} />
@@ -45,7 +45,7 @@ function CreateEntries() {
             </label>
             <button type="submit">Submit</button>
         </form>
-        <form onSubmit={handleSubmitOutgoing}>
+        <form id="budgetform" onSubmit={handleSubmitOutgoing}>
             <label>
                 Outgoing Name:
                 <input type="text" value={name} onChange={e => setName(e.target.value)} />
@@ -57,7 +57,7 @@ function CreateEntries() {
             <button type="submit">Submit</button>
         </form>
 
-        </>
+        </div>
 
      );
 }
