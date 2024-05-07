@@ -9,7 +9,8 @@ function SavingsCalculator() {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [savingsSummary, setSavingsSummary] = useState(null);
-    const [calendarVisible, setCalendarVisible] = useState(false);
+    const [startCalendarVisible, setStartCalendarVisible] = useState(false);
+    const [endCalendarVisible, setEndCalendarVisible] = useState(false);
 
     useEffect(() => {
         if (startDate && endDate) {
@@ -19,10 +20,12 @@ function SavingsCalculator() {
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
+        setStartCalendarVisible(false); // Close start calendar after selecting date
     };
 
     const handleEndDateChange = (date) => {
         setEndDate(date);
+        setEndCalendarVisible(false); // Close end calendar after selecting date
     };
 
     const handleInputChange = (event) => {
@@ -59,13 +62,15 @@ function SavingsCalculator() {
 
     const calculateDuration = () => {
         if (!startDate || !endDate) return null;
-
+    
         const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
         const totalWeeks = Math.floor(totalDays / 7);
         const remainingDays = totalDays % 7;
         const totalMonths = Math.floor(totalDays / 30);
         const remainingWeeks = totalWeeks % 4;
         const totalYears = Math.floor(totalDays / 365);
+        const remainingMonths = totalMonths % 12;
+        const totalYearsFromMonths = Math.floor(totalMonths / 12);
 
         return {
             totalDays,
@@ -73,12 +78,9 @@ function SavingsCalculator() {
             remainingDays,
             totalMonths,
             remainingWeeks,
-            totalYears
+            totalYears: totalYears + totalYearsFromMonths,
+            remainingMonths: remainingMonths
         };
-    };
-
-    const toggleCalendar = () => {
-        setCalendarVisible(!calendarVisible);
     };
 
     return (
@@ -91,25 +93,40 @@ function SavingsCalculator() {
                 <label>Savings Goal (£):</label>
                 <input type="number" min={0} name="savingsGoal" value={savingsGoal} onChange={handleInputChange} />
 
-                <label>Save by? (date range):</label>
+                <label>Save period:</label>
                 <div className="date-range-picker">
-                    <input
-                        type="text"
-                        value={startDate && endDate ? `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}` : ''}
-                        onClick={toggleCalendar}
-                        readOnly
-                    />
-                    {calendarVisible && (
-                        <Calendar
-                            onChange={(value) => {
-                                handleStartDateChange(value[0]);
-                                handleEndDateChange(value[1]);
-                                toggleCalendar(); // Close calendar after selecting dates
-                            }}
-                            value={startDate && endDate ? [startDate, endDate] : startDate}
-                            selectRange
+                    <div>
+                        <label>Start Date:</label>
+                        <input
+                            type="text"
+                            value={startDate ? startDate.toLocaleDateString() : ''}
+                            onClick={() => setStartCalendarVisible(true)}
+                            readOnly
                         />
-                    )}
+                        {startCalendarVisible && (
+                            <Calendar
+                                onChange={handleStartDateChange}
+                                value={startDate}
+                                onClickDay={() => setStartCalendarVisible(false)} // Close calendar after selecting date
+                            />
+                        )}
+                    </div>
+                    <div>
+                        <label>End Date:</label>
+                        <input
+                            type="text"
+                            value={endDate ? endDate.toLocaleDateString() : ''}
+                            onClick={() => setEndCalendarVisible(true)}
+                            readOnly
+                        />
+                        {endCalendarVisible && (
+                            <Calendar
+                                onChange={handleEndDateChange}
+                                value={endDate}
+                                onClickDay={() => setEndCalendarVisible(false)} // Close calendar after selecting date
+                            />
+                        )}
+                    </div>
                 </div>
 
                 {savingsSummary && (
@@ -123,7 +140,7 @@ function SavingsCalculator() {
                             <p>
                                 It will take
                                 {savingsSummary.duration.totalYears > 0 && `${savingsSummary.duration.totalYears} year${savingsSummary.duration.totalYears > 1 ? 's' : ''},`}
-                                {savingsSummary.duration.totalMonths > 0 && `${savingsSummary.duration.totalMonths} month${savingsSummary.duration.totalMonths > 1 ? 's' : ''},`}
+                                {savingsSummary.duration.remainingMonths > 0 && `${savingsSummary.duration.remainingMonths} month${savingsSummary.duration.remainingMonths > 1 ? 's' : ''},`}
                                 {savingsSummary.duration.remainingWeeks > 0 && `${savingsSummary.duration.remainingWeeks} week${savingsSummary.duration.remainingWeeks > 1 ? 's' : ''},`} and
                                 {savingsSummary.duration.remainingDays > 0 && `${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`} 
                                 to achieve your goal.
