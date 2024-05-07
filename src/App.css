@@ -3,7 +3,7 @@
 body {
   background-color: rgba(245, 239, 239, 0.774);
   font-family: Helvetica, sans-serif;
-  text-align: center;
+  
 }
 
 #navbutton {
@@ -55,4 +55,27 @@ body {
 
 #description {
   font-size: 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+  max-width: 80%;
+  margin: auto;
+}
+
+.income-form, .outgoing-form {
+  margin: 10px;
+}
+
+.income-form input, .outgoing-form input {
+  margin-left: 10px;
+}
+
+.income-form button, .outgoing-form button {
+  margin-left: 10px;
 }

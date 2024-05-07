@@ -1,0 +1,16 @@
+{
+  "Income": [
+    {
+      "takeHomePay": 1500,
+      "additionalIncome": 350,
+      "id": 1
+    }
+  ],
+  "Outgoings": [
+    {
+      "name": "Rent",
+      "cost": 750,
+      "id": 1
+    }
+  ]
+}

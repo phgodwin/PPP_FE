@@ -1,7 +1,18 @@
+
+import CreateEntries from '../Components/Budget Planner/CreateEntries';
+import DisplayBudget from '../Components/Budget Planner/DisplayBudget';
+
 function BudgetPlanner() {
-    return ( 
-        <h1>Budget Planner</h1>
-     );
+
+
+    return (
+        <>
+
+            <CreateEntries />
+            <br></br>
+            <DisplayBudget />
+        </>
+    );
 }
 
 export default BudgetPlanner;
