@@ -16,8 +16,7 @@ function SavingsCalculator() {
         if (startDate && endDate) {
             handleSubmit(); // Trigger calculation when both start and end dates are selected
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [startDate, endDate, savingsGoal]); 
+    }, [startDate, endDate]); 
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -41,6 +40,9 @@ function SavingsCalculator() {
             default:
                 break;
         }
+        
+        // Trigger calculation whenever the savings goal input changes
+        handleSubmit();
     };
 
     const handleSubmit = () => {
@@ -139,12 +141,12 @@ function SavingsCalculator() {
                         <p>Amount to save yearly: £{savingsSummary.yearly}</p>
                         {savingsSummary.duration && (
                             <p>
-                                It will take
-                                {savingsSummary.duration.totalYears > 0 && `${savingsSummary.duration.totalYears} year${savingsSummary.duration.totalYears > 1 ? 's' : ''},`}
-                                {savingsSummary.duration.remainingMonths > 0 && `${savingsSummary.duration.remainingMonths} month${savingsSummary.duration.remainingMonths > 1 ? 's' : ''},`}
-                                {savingsSummary.duration.remainingWeeks > 0 && `${savingsSummary.duration.remainingWeeks} week${savingsSummary.duration.remainingWeeks > 1 ? 's' : ''},`} and
-                                {savingsSummary.duration.remainingDays > 0 && `${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`} 
-                                to achieve your goal.
+                                It will take{' '}
+                                {savingsSummary.duration.totalYears > 0 && `${savingsSummary.duration.totalYears} year${savingsSummary.duration.totalYears > 1 ? 's' : ''}`}
+                                {savingsSummary.duration.remainingMonths > 0 && `, ${savingsSummary.duration.remainingMonths} month${savingsSummary.duration.remainingMonths > 1 ? 's' : ''}`}
+                                {savingsSummary.duration.remainingWeeks > 0 && `, ${savingsSummary.duration.remainingWeeks} week${savingsSummary.duration.remainingWeeks > 1 ? 's' : ''}`}
+                                {savingsSummary.duration.remainingDays > 0 && `, and ${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`} 
+                                {' '}to achieve your goal.
                             </p>
                         )}
                     </div>
