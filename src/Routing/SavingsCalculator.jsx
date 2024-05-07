@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import "./SavingsCalculator.css";
 
 function SavingsCalculator() {
@@ -9,10 +9,13 @@ function SavingsCalculator() {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [savingsSummary, setSavingsSummary] = useState(null);
+    const [calendarVisible, setCalendarVisible] = useState(false);
 
     useEffect(() => {
-        handleSubmit(); // Trigger initial calculation
-    }, [savingsGoal, startDate, endDate]); // Re-run whenever these values change
+        if (startDate && endDate) {
+            handleSubmit(); // Trigger calculation when both start and end dates are selected
+        }
+    }, [startDate, endDate]); 
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -36,6 +39,24 @@ function SavingsCalculator() {
         }
     };
 
+    const handleSubmit = () => {
+        // Perform any necessary calculations or actions with the input values
+        const duration = calculateDuration();
+
+        if (duration) { // Check if duration is not null
+            setSavingsSummary({
+                daily: Math.min(savingsGoal, savingsGoal / duration.totalDays).toFixed(2),
+                weekly: Math.min(savingsGoal, savingsGoal / (duration.totalWeeks * 7)).toFixed(2),
+                monthly: Math.min(savingsGoal, savingsGoal / duration.totalMonths).toFixed(2),
+                yearly: Math.min(savingsGoal, savingsGoal / (duration.totalDays / 365)).toFixed(2),
+                duration
+            });
+        } else {
+            // Handle case when duration is null (e.g., when startDate or endDate is null)
+            setSavingsSummary(null);
+        }
+    };
+
     const calculateDuration = () => {
         if (!startDate || !endDate) return null;
 
@@ -56,22 +77,8 @@ function SavingsCalculator() {
         };
     };
 
-    const handleSubmit = () => {
-        // Perform any necessary calculations or actions with the input values
-        const duration = calculateDuration();
-
-        if (duration) { // Check if duration is not null
-            setSavingsSummary({
-                daily: Math.min(savingsGoal, savingsGoal / duration.totalDays).toFixed(2),
-                weekly: Math.min(savingsGoal, savingsGoal / (duration.totalWeeks * 7)).toFixed(2),
-                monthly: Math.min(savingsGoal, savingsGoal / duration.totalMonths).toFixed(2),
-                yearly: Math.min(savingsGoal, savingsGoal / (duration.totalDays / 365)).toFixed(2),
-                duration
-            });
-        } else {
-            // Handle case when duration is null (e.g., when startDate or endDate is null)
-            setSavingsSummary(null);
-        }
+    const toggleCalendar = () => {
+        setCalendarVisible(!calendarVisible);
     };
 
     return (
@@ -86,25 +93,23 @@ function SavingsCalculator() {
 
                 <label>Save by? (date range):</label>
                 <div className="date-range-picker">
-                    <DatePicker
-                        selected={startDate}
-                        onChange={handleStartDateChange}
-                        selectsStart
-                        startDate={startDate}
-                        endDate={endDate}
-                        dateFormat="dd/MM/yyyy"
-                        placeholderText="Start Date"
+                    <input
+                        type="text"
+                        value={startDate && endDate ? `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}` : ''}
+                        onClick={toggleCalendar}
+                        readOnly
                     />
-                    <DatePicker
-                        selected={endDate}
-                        onChange={handleEndDateChange}
-                        selectsEnd
-                        startDate={startDate}
-                        endDate={endDate}
-                        minDate={startDate}
-                        dateFormat="dd/MM/yyyy"
-                        placeholderText="End Date"
-                    />
+                    {calendarVisible && (
+                        <Calendar
+                            onChange={(value) => {
+                                handleStartDateChange(value[0]);
+                                handleEndDateChange(value[1]);
+                                toggleCalendar(); // Close calendar after selecting dates
+                            }}
+                            value={startDate && endDate ? [startDate, endDate] : startDate}
+                            selectRange
+                        />
+                    )}
                 </div>
 
                 {savingsSummary && (
