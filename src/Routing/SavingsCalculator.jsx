@@ -16,7 +16,8 @@ function SavingsCalculator() {
         if (startDate && endDate) {
             handleSubmit(); // Trigger calculation when both start and end dates are selected
         }
-    }, [startDate, endDate]); 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [startDate, endDate, savingsGoal]); 
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
