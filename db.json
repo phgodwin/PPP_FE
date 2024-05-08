@@ -3,24 +3,49 @@
     {
       "takeHomePay": 1500,
       "additionalIncome": 350,
-      "id": 1
+      "id": "1"
+    },
+    {
+      "id": "7c74",
+      "takeHomePay": "1500",
+      "additionalIncome": "100"
+    },
+    {
+      "id": "1e69",
+      "takeHomePay": "",
+      "additionalIncome": ""
+    },
+    {
+      "id": "3e27",
+      "takeHomePay": "1000",
+      "additionalIncome": "150"
     }
   ],
   "Outgoings": [
     {
       "name": "Rent",
       "cost": 750,
-      "id": 1
+      "id": "1"
     },
     {
       "name": "Electric",
       "cost": "180",
-      "id": 2
+      "id": "2"
     },
     {
       "name": "Wifi",
       "cost": "25",
-      "id": 3
+      "id": "3"
+    },
+    {
+      "id": "e2c0",
+      "name": "Council Tax",
+      "cost": "300"
+    },
+    {
+      "id": "6317",
+      "name": "Water Rates",
+      "cost": "35"
     }
   ]
 }
