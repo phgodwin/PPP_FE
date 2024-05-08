@@ -163,7 +163,7 @@ function BudgetPlanner() {
                 <PDFDownloadLink document={MyDocument} fileName="savings_plan.pdf">
                     {({ blob, url, loading, error }) =>
                         <button>
-                            {loading ? 'Loading document...' : 'Download Savings Plan'}
+                            {loading ? 'Loading document...' : 'Download your Budget plan here'}
                         </button>
                     }
                 </PDFDownloadLink>

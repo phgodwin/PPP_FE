@@ -242,7 +242,7 @@ function SavingsCalculator() {
                             <PDFDownloadLink document={MyDocument} fileName="savings_plan.pdf">
                                 {({ blob, url, loading, error }) =>
                                     <button>
-                                        {loading ? 'Loading document...' : 'Download Your Plan Here'}
+                                        {loading ? 'Loading document...' : 'Download Your Savings Plan Here'}
                                     </button>
                                 }
                             </PDFDownloadLink>
