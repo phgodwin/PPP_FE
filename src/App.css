@@ -3,7 +3,25 @@
 body {
   background-color: rgba(245, 239, 239, 0.774);
   font-family: Helvetica, sans-serif;
-  text-align: center;
+  
+}
+
+input {
+  font-size: 20px;
+
+}
+
+#homebutton {
+padding-right: 20px;
+padding-bottom: 10px;
+padding-left: 15px;
+background-color: #ca0001;
+color: white;
+font-size:80px;
+font-weight: 1000%;
+border-radius: 10px;
+border-color: #ca0001;
+margin: 0%;
 }
 
 #navbutton {
@@ -34,17 +52,6 @@ body {
   padding: 25px;
   border-radius: 8px;
 }
-#home2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  max-width: 70%;
-  margin: auto;
-  padding: 25px;
-  border-radius: 8px;
-}
 
 
 #title {
@@ -53,6 +60,91 @@ body {
   text-shadow: 1px 1px 2px #000000;
 }
 
+#heading2 {
+  font-size: 30px;
+  color: #ca0001;
+  text-shadow: 1px 1px 2px #000000;
+}
+
 #description {
   font-size: 20px;
+}
+
+#budgetcontainer{
+  display: flex;
+  justify-content: space-around;
+}
+
+#budgetdisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  max-width: 70%;
+  width: 30%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
+  font-size: larger;
+}
+
+#budgetentriescontainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 70%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+#budgetform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 30%;
+  margin: auto;
+  padding: 50px;
+  border-radius: 8px;
+font-size: 25px;
+}
+
+#budgetform input {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ca0001;
+  width: 80%;
+}
+#budgetdisplay button {
+margin: 10px;
+padding: 10px;
+border-radius: 5px;
+border-width: 1px;
+border-style: solid;
+border-color: #ca0001;
+background-color: #ca0001;
+color: white;
+font-size: 20px;
+text-shadow: 1px 1px 2px #000000;
+box-shadow: 3px 3px 5px #000000;
+}
+
+#budgetform button {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ca0001;
+  background-color: #ca0001;
+  color: white;
+  font-size: 20px;
+  text-shadow: 1px 1px 2px #000000;
+  box-shadow: 3px 3px 5px #000000;
 }

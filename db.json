@@ -1,0 +1,31 @@
+{
+  "Income": [
+    {
+      "takeHomePay": 1500,
+      "additionalIncome": 350,
+      "id": 1
+    }
+  ],
+  "Outgoings": [
+    {
+      "name": "Rent",
+      "cost": 750,
+      "id": 1
+    },
+    {
+      "name": "Electric",
+      "cost": 180,
+      "id": 2
+    },
+    {
+      "name": "Wifi",
+      "cost": 25,
+      "id": 3
+    },
+    {
+      "name": "Car",
+      "cost": "500",
+      "id": 4
+    }
+  ]
+}
