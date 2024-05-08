@@ -2,6 +2,20 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import "./SavingsCalculator.css";
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+
+// Define styles outside of the component
+const styles = StyleSheet.create({
+    page: {
+        flexDirection: 'row',
+        backgroundColor: '#E4E4E4'
+    },
+    section: {
+        margin: 10,
+        padding: 10,
+        flexGrow: 1
+    }
+});
 
 function SavingsCalculator() {
     const [savingsName, setSavingsName] = useState('');
@@ -86,6 +100,34 @@ function SavingsCalculator() {
         };
     };
 
+    const MyDocument = (
+        <Document>
+            <Page style={styles.page}>
+                <View style={styles.section}>
+                    <Text>Savings Summary</Text>
+                    {savingsSummary && (
+                        <View>
+                            <Text>Amount to save daily: £{savingsSummary.daily}</Text>
+                            <Text>Amount to save weekly: £{savingsSummary.weekly}</Text>
+                            <Text>Amount to save monthly: £{savingsSummary.monthly}</Text>
+                            <Text>Amount to save yearly: £{savingsSummary.yearly}</Text>
+                            {savingsSummary.duration && (
+                                <Text>
+                                    It will take{' '}
+                                    {savingsSummary.duration.totalYears > 0 && `${savingsSummary.duration.totalYears} year${savingsSummary.duration.totalYears > 1 ? 's' : ''}`}
+                                    {savingsSummary.duration.remainingMonths > 0 && `, ${savingsSummary.duration.remainingMonths} month${savingsSummary.duration.remainingMonths > 1 ? 's' : ''}`}
+                                    {savingsSummary.duration.remainingWeeks > 0 && `, ${savingsSummary.duration.remainingWeeks} week${savingsSummary.duration.remainingWeeks > 1 ? 's' : ''}`}
+                                    {savingsSummary.duration.remainingDays > 0 && `, and ${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`} 
+                                    {' '}to achieve your goal.
+                                </Text>
+                            )}
+                        </View>
+                    )}
+                </View>
+            </Page>
+        </Document>
+    );
+
     return (
         <div>
             <h1>Savings Calculator</h1>
@@ -151,6 +193,14 @@ function SavingsCalculator() {
                         )}
                     </div>
                 )}
+
+                <div className="download-button">
+                    <PDFDownloadLink document={MyDocument} fileName="savings_plan.pdf">
+                        {({ blob, url, loading, error }) =>
+                            loading ? 'Loading document...' : 'Download Your Plan Here'
+                        }
+                    </PDFDownloadLink>
+                </div>
             </div>
         </div>
     );
