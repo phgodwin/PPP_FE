@@ -1,22 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import "./SavingsCalculator.css";
-import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { PDFDownloadLink, Document, Page, Text, View } from '@react-pdf/renderer';
 import { useNavigate } from 'react-router-dom';
 
-// Define styles outside of the component
-const styles = StyleSheet.create({
-    page: {
-        flexDirection: 'row',
-        backgroundColor: '#E4E4E4'
-    },
-    section: {
-        margin: 10,
-        padding: 10,
-        flexGrow: 1
-    }
-});
 
 function SavingsCalculator() {
     const [savingsName, setSavingsName] = useState('');
@@ -105,8 +92,8 @@ function SavingsCalculator() {
 
     const MyDocument = (
         <Document>
-            <Page style={styles.page}>
-                <View style={styles.section}>
+            <Page >
+                <View >
                     <Text>Savings Summary</Text>
                     {savingsSummary && (
                         <View>

@@ -91,6 +91,17 @@ margin: 0%;
   text-align: center;
 }
 
+#tipdisplay {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 70%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: white;
+}
+
 #budgetentriescontainer {
   display: flex;
   justify-content: space-around;
@@ -186,6 +197,20 @@ box-shadow: 3px 3px 5px #000000;
   background-color: #ca0001;
   color: white;
   font-size: 20px;
+  text-shadow: 1px 1px 2px #000000;
+  box-shadow: 3px 3px 5px #000000;
+}
+
+#contactusbutton {
+  background-color: white;
+  color:  #ca0001;
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ca0001;
   text-shadow: 1px 1px 2px #000000;
   box-shadow: 3px 3px 5px #000000;
 }
