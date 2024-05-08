@@ -26,11 +26,42 @@ function SavingsCalculator() {
     const [startCalendarVisible, setStartCalendarVisible] = useState(false);
     const [endCalendarVisible, setEndCalendarVisible] = useState(false);
 
+    const styles = StyleSheet.create({
+        page: {
+            flexDirection: 'row',
+            backgroundColor: '#fff',
+            padding: 20,
+        },
+        section: {
+            margin: 10,
+            padding: 10,
+            flexGrow: 1,
+        },
+        headingContainer: {
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        heading: {
+            fontSize: 18,
+            fontWeight: 'bold',
+            marginBottom: 10,
+            color: '#333',
+            textAlign: 'center',
+
+        },
+        text: {
+            fontSize: 12,
+            marginBottom: 5,
+            color: '#555', // Medium dark text color
+        },
+    });
+
+
     useEffect(() => {
         if (startDate && endDate) {
             handleSubmit(); // Trigger calculation when both start and end dates are selected
         }
-    }, [startDate, endDate]); 
+    }, [startDate, endDate]);
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -54,7 +85,7 @@ function SavingsCalculator() {
             default:
                 break;
         }
-        
+
         // Trigger calculation whenever the savings goal input changes
         handleSubmit();
     };
@@ -79,7 +110,7 @@ function SavingsCalculator() {
 
     const calculateDuration = () => {
         if (!startDate || !endDate) return null;
-    
+
         const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
         const totalWeeks = Math.floor(totalDays / 7);
         const remainingDays = totalDays % 7;
@@ -100,24 +131,34 @@ function SavingsCalculator() {
         };
     };
 
+
+
     const MyDocument = (
         <Document>
             <Page style={styles.page}>
                 <View style={styles.section}>
-                    <Text>Savings Summary</Text>
+                    <Text style={[styles.heading, { marginBottom: 30, textDecoration: 'underline' }]}>Savings Summary</Text>
                     {savingsSummary && (
                         <View>
-                            <Text>Amount to save daily: £{savingsSummary.daily}</Text>
-                            <Text>Amount to save weekly: £{savingsSummary.weekly}</Text>
-                            <Text>Amount to save monthly: £{savingsSummary.monthly}</Text>
-                            <Text>Amount to save yearly: £{savingsSummary.yearly}</Text>
+                            <Text style={{ marginBottom: 20 }}>
+                                Amount to save <Text style={{ color: 'red', textDecoration: 'underline' }}>Daily:</Text> £{savingsSummary.daily}
+                            </Text>
+                            <Text style={{ marginBottom: 20 }}>
+                                Amount to save <Text style={{ color: 'red', textDecoration: 'underline' }}>Weekly:</Text> £{savingsSummary.weekly}
+                            </Text>
+                            <Text style={{ marginBottom: 20 }}>
+                                Amount to save <Text style={{ color: 'red', textDecoration: 'underline' }}>Monthly:</Text> £{savingsSummary.monthly}
+                            </Text>
+                            <Text style={{ marginBottom: 20 }}>
+                                Amount to save <Text style={{ color: 'red', textDecoration: 'underline' }}>Yearly:</Text> £{savingsSummary.yearly}
+                            </Text>
                             {savingsSummary.duration && (
-                                <Text>
+                                <Text style={{ marginTop: 20 }}>
                                     It will take{' '}
-                                    {savingsSummary.duration.totalYears > 0 && `${savingsSummary.duration.totalYears} year${savingsSummary.duration.totalYears > 1 ? 's' : ''}`}
-                                    {savingsSummary.duration.remainingMonths > 0 && `, ${savingsSummary.duration.remainingMonths} month${savingsSummary.duration.remainingMonths > 1 ? 's' : ''}`}
-                                    {savingsSummary.duration.remainingWeeks > 0 && `, ${savingsSummary.duration.remainingWeeks} week${savingsSummary.duration.remainingWeeks > 1 ? 's' : ''}`}
-                                    {savingsSummary.duration.remainingDays > 0 && `, and ${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`} 
+                                    {savingsSummary.duration.totalYears > 0 && <Text>{savingsSummary.duration.totalYears} year{parseInt(savingsSummary.duration.totalYears) > 1 ? 's' : ''}</Text>}
+                                    {savingsSummary.duration.remainingMonths > 0 && <Text>, {savingsSummary.duration.remainingMonths} month{parseInt(savingsSummary.duration.remainingMonths) > 1 ? 's' : ''}</Text>}
+                                    {savingsSummary.duration.remainingWeeks > 0 && <Text>, {savingsSummary.duration.remainingWeeks} week{parseInt(savingsSummary.duration.remainingWeeks) > 1 ? 's' : ''}</Text>}
+                                    {savingsSummary.duration.remainingDays > 0 && <Text>, and {savingsSummary.duration.remainingDays} day{parseInt(savingsSummary.duration.remainingDays) > 1 ? 's' : ''}</Text>}
                                     {' '}to achieve your goal.
                                 </Text>
                             )}
@@ -127,6 +168,7 @@ function SavingsCalculator() {
             </Page>
         </Document>
     );
+
 
     return (
         <div>
@@ -177,17 +219,18 @@ function SavingsCalculator() {
                 {savingsSummary && (
                     <div className="summary">
                         <h2>Savings Summary</h2>
-                        <p>Amount to save daily: £{savingsSummary.daily}</p>
-                        <p>Amount to save weekly: £{savingsSummary.weekly}</p>
-                        <p>Amount to save monthly: £{savingsSummary.monthly}</p>
-                        <p>Amount to save yearly: £{savingsSummary.yearly}</p>
+                        <p>Amount to save daily: <span style={{ fontWeight: 'bold', textDecoration: 'underline' }}>£{savingsSummary.daily}</span></p>
+                        <p>Amount to save weekly: <span style={{ fontWeight: 'bold', textDecoration: 'underline' }}>£{savingsSummary.weekly}</span></p>
+                        <p>Amount to save monthly: <span style={{ fontWeight: 'bold', textDecoration: 'underline' }}>£{savingsSummary.monthly}</span></p>
+                        <p>Amount to save yearly: <span style={{ fontWeight: 'bold', textDecoration: 'underline' }}>£{savingsSummary.yearly}</span></p>
+
                         {savingsSummary.duration && (
                             <p>
                                 It will take{' '}
                                 {savingsSummary.duration.totalYears > 0 && `${savingsSummary.duration.totalYears} year${savingsSummary.duration.totalYears > 1 ? 's' : ''}`}
                                 {savingsSummary.duration.remainingMonths > 0 && `, ${savingsSummary.duration.remainingMonths} month${savingsSummary.duration.remainingMonths > 1 ? 's' : ''}`}
                                 {savingsSummary.duration.remainingWeeks > 0 && `, ${savingsSummary.duration.remainingWeeks} week${savingsSummary.duration.remainingWeeks > 1 ? 's' : ''}`}
-                                {savingsSummary.duration.remainingDays > 0 && `, and ${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`} 
+                                {savingsSummary.duration.remainingDays > 0 && `, and ${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`}
                                 {' '}to achieve your goal.
                             </p>
                         )}
