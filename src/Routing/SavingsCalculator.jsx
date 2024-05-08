@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { PDFDownloadLink, Document, Page, Text, View } from '@react-pdf/renderer';
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer'; // Import StyleSheet
 import { useNavigate } from 'react-router-dom';
+
+const styles = StyleSheet.create({
+    page: {
+        flexDirection: 'row',
+        backgroundColor: '#E4E4E4'
+    },
+    section: {
+        margin: 10,
+        padding: 10,
+        flexGrow: 1
+    }
+});
 
 
 function SavingsCalculator() {
@@ -15,6 +27,37 @@ function SavingsCalculator() {
     const [endCalendarVisible, setEndCalendarVisible] = useState(false);
 
     const navigate = useNavigate();
+
+    const styles = StyleSheet.create({
+        page: {
+            flexDirection: 'row',
+            backgroundColor: '#fff',
+            padding: 20,
+        },
+        section: {
+            margin: 10,
+            padding: 10,
+            flexGrow: 1,
+        },
+        headingContainer: {
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        heading: {
+            fontSize: 18,
+            fontWeight: 'bold',
+            marginBottom: 10,
+            color: '#333',
+            textAlign: 'center',
+
+        },
+        text: {
+            fontSize: 12,
+            marginBottom: 5,
+            color: '#555', // Medium dark text color
+        },
+    });
+
 
     useEffect(() => {
         if (startDate && endDate) {
@@ -92,22 +135,30 @@ function SavingsCalculator() {
 
     const MyDocument = (
         <Document>
-            <Page >
-                <View >
-                    <Text>Savings Summary</Text>
+            <Page style={styles.page}>
+                <View style={styles.section}>
+                    <Text style={[styles.heading, { marginBottom: 30, textDecoration: 'underline' }]}>Savings Summary</Text>
                     {savingsSummary && (
                         <View>
-                            <Text>Amount to save daily: <strong>£{savingsSummary.daily}</strong></Text>
-                            <Text>Amount to save weekly: <strong>£{savingsSummary.weekly}</strong></Text>
-                            <Text>Amount to save monthly: <strong>£{savingsSummary.monthly}</strong></Text>
-                            <Text>Amount to save yearly: <strong>£{savingsSummary.yearly}</strong></Text>
+                            <Text style={{ marginBottom: 20 }}>
+                                Amount to save <Text style={{ color: 'red', textDecoration: 'underline' }}>Daily:</Text> £{savingsSummary.daily}
+                            </Text>
+                            <Text style={{ marginBottom: 20 }}>
+                                Amount to save <Text style={{ color: 'red', textDecoration: 'underline' }}>Weekly:</Text> £{savingsSummary.weekly}
+                            </Text>
+                            <Text style={{ marginBottom: 20 }}>
+                                Amount to save <Text style={{ color: 'red', textDecoration: 'underline' }}>Monthly:</Text> £{savingsSummary.monthly}
+                            </Text>
+                            <Text style={{ marginBottom: 20 }}>
+                                Amount to save <Text style={{ color: 'red', textDecoration: 'underline' }}>Yearly:</Text> £{savingsSummary.yearly}
+                            </Text>
                             {savingsSummary.duration && (
-                                <Text>
+                                <Text style={{ marginTop: 20 }}>
                                     It will take{' '}
-                                    {savingsSummary.duration.totalYears > 0 && `${savingsSummary.duration.totalYears} year${savingsSummary.duration.totalYears > 1 ? 's' : ''}`}
-                                    {savingsSummary.duration.remainingMonths > 0 && `, ${savingsSummary.duration.remainingMonths} month${savingsSummary.duration.remainingMonths > 1 ? 's' : ''}`}
-                                    {savingsSummary.duration.remainingWeeks > 0 && `, ${savingsSummary.duration.remainingWeeks} week${savingsSummary.duration.remainingWeeks > 1 ? 's' : ''}`}
-                                    {savingsSummary.duration.remainingDays > 0 && `, and ${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`}
+                                    {savingsSummary.duration.totalYears > 0 && <Text>{savingsSummary.duration.totalYears} year{parseInt(savingsSummary.duration.totalYears) > 1 ? 's' : ''}</Text>}
+                                    {savingsSummary.duration.remainingMonths > 0 && <Text>, {savingsSummary.duration.remainingMonths} month{parseInt(savingsSummary.duration.remainingMonths) > 1 ? 's' : ''}</Text>}
+                                    {savingsSummary.duration.remainingWeeks > 0 && <Text>, {savingsSummary.duration.remainingWeeks} week{parseInt(savingsSummary.duration.remainingWeeks) > 1 ? 's' : ''}</Text>}
+                                    {savingsSummary.duration.remainingDays > 0 && <Text>, and {savingsSummary.duration.remainingDays} day{parseInt(savingsSummary.duration.remainingDays) > 1 ? 's' : ''}</Text>}
                                     {' '}to achieve your goal.
                                 </Text>
                             )}
