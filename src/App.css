@@ -61,13 +61,14 @@ margin: 0%;
 }
 
 #heading2 {
-  font-size: 30px;
+  font-size: 35px;
   color: #ca0001;
   text-shadow: 1px 1px 2px #000000;
 }
 
 #description {
   font-size: 20px;
+  text-align: center;
 }
 
 #budgetcontainer{
@@ -87,6 +88,7 @@ margin: 0%;
   padding: 25px;
   border-radius: 8px;
   font-size: larger;
+  text-align: center;
 }
 
 #budgetentriescontainer {
@@ -110,6 +112,45 @@ margin: 0%;
   padding: 50px;
   border-radius: 8px;
 font-size: 25px;
+text-align: center;
+}
+
+#savingsform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 30%;
+  margin: auto;
+  padding: 50px;
+  border-radius: 8px;
+  font-size: 25px;
+}
+
+#savingsform input {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ca0001;
+  width: 80%;
+  font-family: Helvetica, sans-serif;
+}
+
+#savingsdisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  max-width: 70%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
+  font-size: 25px;
+  text-align: center;
 }
 
 #budgetform input {

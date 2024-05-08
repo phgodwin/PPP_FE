@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import "./SavingsCalculator.css";
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { useNavigate } from 'react-router-dom';
 
 // Define styles outside of the component
 const styles = StyleSheet.create({
@@ -26,11 +27,13 @@ function SavingsCalculator() {
     const [startCalendarVisible, setStartCalendarVisible] = useState(false);
     const [endCalendarVisible, setEndCalendarVisible] = useState(false);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         if (startDate && endDate) {
             handleSubmit(); // Trigger calculation when both start and end dates are selected
         }
-    }, [startDate, endDate]); 
+    }, [startDate, endDate]);
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -54,7 +57,7 @@ function SavingsCalculator() {
             default:
                 break;
         }
-        
+
         // Trigger calculation whenever the savings goal input changes
         handleSubmit();
     };
@@ -79,7 +82,7 @@ function SavingsCalculator() {
 
     const calculateDuration = () => {
         if (!startDate || !endDate) return null;
-    
+
         const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
         const totalWeeks = Math.floor(totalDays / 7);
         const remainingDays = totalDays % 7;
@@ -107,17 +110,17 @@ function SavingsCalculator() {
                     <Text>Savings Summary</Text>
                     {savingsSummary && (
                         <View>
-                            <Text>Amount to save daily: £{savingsSummary.daily}</Text>
-                            <Text>Amount to save weekly: £{savingsSummary.weekly}</Text>
-                            <Text>Amount to save monthly: £{savingsSummary.monthly}</Text>
-                            <Text>Amount to save yearly: £{savingsSummary.yearly}</Text>
+                            <Text>Amount to save daily: <strong>£{savingsSummary.daily}</strong></Text>
+                            <Text>Amount to save weekly: <strong>£{savingsSummary.weekly}</strong></Text>
+                            <Text>Amount to save monthly: <strong>£{savingsSummary.monthly}</strong></Text>
+                            <Text>Amount to save yearly: <strong>£{savingsSummary.yearly}</strong></Text>
                             {savingsSummary.duration && (
                                 <Text>
                                     It will take{' '}
                                     {savingsSummary.duration.totalYears > 0 && `${savingsSummary.duration.totalYears} year${savingsSummary.duration.totalYears > 1 ? 's' : ''}`}
                                     {savingsSummary.duration.remainingMonths > 0 && `, ${savingsSummary.duration.remainingMonths} month${savingsSummary.duration.remainingMonths > 1 ? 's' : ''}`}
                                     {savingsSummary.duration.remainingWeeks > 0 && `, ${savingsSummary.duration.remainingWeeks} week${savingsSummary.duration.remainingWeeks > 1 ? 's' : ''}`}
-                                    {savingsSummary.duration.remainingDays > 0 && `, and ${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`} 
+                                    {savingsSummary.duration.remainingDays > 0 && `, and ${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`}
                                     {' '}to achieve your goal.
                                 </Text>
                             )}
@@ -129,80 +132,90 @@ function SavingsCalculator() {
     );
 
     return (
-        <div>
-            <h1>Savings Calculator</h1>
-            <div className="container_calculator">
+        <>
+            <button id="homebutton" onClick={() => navigate("/")}>&#11013;</button>
+            <div id="home">
+                <h1 id="title">Savings Calculator</h1>
+                <p id="description">Enter your savings goal and the period you want to save for to calculate how much you need to save daily, weekly, monthly, or yearly to achieve your goal. Once you're happy you can download your plan as a PDF document to keep for later!</p>
+            </div>
+            <br />
+            <div id="savingsform">
                 <label>Savings Name:</label>
                 <input type="text" name="savingsName" value={savingsName} onChange={handleInputChange} />
 
                 <label>Savings Goal (£):</label>
                 <input type="number" min={0} name="savingsGoal" value={savingsGoal} onChange={handleInputChange} />
 
-                <label>Save period:</label>
-                <div className="date-range-picker">
-                    <div>
-                        <label>Start Date:</label>
-                        <input
-                            type="text"
-                            value={startDate ? startDate.toLocaleDateString() : ''}
-                            onClick={() => setStartCalendarVisible(true)}
-                            readOnly
-                        />
-                        {startCalendarVisible && (
-                            <Calendar
-                                onChange={handleStartDateChange}
-                                value={startDate}
-                                onClickDay={() => setStartCalendarVisible(false)} // Close calendar after selecting date
-                            />
-                        )}
-                    </div>
-                    <div>
-                        <label>End Date:</label>
-                        <input
-                            type="text"
-                            value={endDate ? endDate.toLocaleDateString() : ''}
-                            onClick={() => setEndCalendarVisible(true)}
-                            readOnly
-                        />
-                        {endCalendarVisible && (
-                            <Calendar
-                                onChange={handleEndDateChange}
-                                value={endDate}
-                                onClickDay={() => setEndCalendarVisible(false)} // Close calendar after selecting date
-                            />
-                        )}
-                    </div>
-                </div>
 
-                {savingsSummary && (
-                    <div className="summary">
-                        <h2>Savings Summary</h2>
-                        <p>Amount to save daily: £{savingsSummary.daily}</p>
-                        <p>Amount to save weekly: £{savingsSummary.weekly}</p>
-                        <p>Amount to save monthly: £{savingsSummary.monthly}</p>
-                        <p>Amount to save yearly: £{savingsSummary.yearly}</p>
-                        {savingsSummary.duration && (
-                            <p>
-                                It will take{' '}
-                                {savingsSummary.duration.totalYears > 0 && `${savingsSummary.duration.totalYears} year${savingsSummary.duration.totalYears > 1 ? 's' : ''}`}
-                                {savingsSummary.duration.remainingMonths > 0 && `, ${savingsSummary.duration.remainingMonths} month${savingsSummary.duration.remainingMonths > 1 ? 's' : ''}`}
-                                {savingsSummary.duration.remainingWeeks > 0 && `, ${savingsSummary.duration.remainingWeeks} week${savingsSummary.duration.remainingWeeks > 1 ? 's' : ''}`}
-                                {savingsSummary.duration.remainingDays > 0 && `, and ${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`} 
-                                {' '}to achieve your goal.
-                            </p>
-                        )}
-                    </div>
+
+
+                <label>Saving Start Date:</label>
+                <input
+                    type="text"
+                    value={startDate ? startDate.toLocaleDateString() : ''}
+                    onClick={() => setStartCalendarVisible(true)}
+                    readOnly
+                />
+                {startCalendarVisible && (
+                    <Calendar
+                        onChange={handleStartDateChange}
+                        value={startDate}
+                        onClickDay={() => setStartCalendarVisible(false)} // Close calendar after selecting date
+                    />
                 )}
 
-                <div className="download-button">
-                    <PDFDownloadLink document={MyDocument} fileName="savings_plan.pdf">
-                        {({ blob, url, loading, error }) =>
-                            loading ? 'Loading document...' : 'Download Your Plan Here'
-                        }
-                    </PDFDownloadLink>
-                </div>
+                <label>Saving End Date:</label>
+                <input
+                    type="text"
+                    value={endDate ? endDate.toLocaleDateString() : ''}
+                    onClick={() => setEndCalendarVisible(true)}
+                    readOnly
+                />
+                {endCalendarVisible && (
+                    <Calendar
+                        onChange={handleEndDateChange}
+                        value={endDate}
+                        onClickDay={() => setEndCalendarVisible(false)} // Close calendar after selecting date
+                    />
+                )}
             </div>
-        </div>
+            <br/>
+            <div id="savingsdisplay">
+                {savingsSummary && (
+                    <div>
+                        <div className="summary">
+                            <h2 id="heading2">Savings Summary</h2>
+                            <p>Amount to save daily: <strong>£{savingsSummary.daily}</strong></p>
+                            <p>Amount to save weekly: <strong>£{savingsSummary.weekly}</strong></p>
+                            <p>Amount to save monthly: <strong>£{savingsSummary.monthly}</strong></p>
+                            <p>Amount to save yearly: <strong>£{savingsSummary.yearly}</strong></p>
+                            {savingsSummary.duration && (
+                                <p>
+                                    It will take{' '}
+                                    {savingsSummary.duration.totalYears > 0 && `${savingsSummary.duration.totalYears} year${savingsSummary.duration.totalYears > 1 ? 's' : ''}`}
+                                    {savingsSummary.duration.remainingMonths > 0 && `, ${savingsSummary.duration.remainingMonths} month${savingsSummary.duration.remainingMonths > 1 ? 's' : ''}`}
+                                    {savingsSummary.duration.remainingWeeks > 0 && `, ${savingsSummary.duration.remainingWeeks} week${savingsSummary.duration.remainingWeeks > 1 ? 's' : ''}`}
+                                    {savingsSummary.duration.remainingDays > 0 && `, and ${savingsSummary.duration.remainingDays} day${savingsSummary.duration.remainingDays > 1 ? 's' : ''}`}
+                                    {' '}to achieve your goal.
+                                </p>
+                            )}
+                        </div>
+                        <div className="download-button">
+                            <PDFDownloadLink document={MyDocument} fileName="savings_plan.pdf">
+                                {({ blob, url, loading, error }) =>
+                                    loading ? 'Loading document...' : 'Download Your Plan Here'
+                                }
+                            </PDFDownloadLink>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+
+
+
+
+        </>
     );
 }
 
