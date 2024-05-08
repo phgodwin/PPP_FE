@@ -11,6 +11,31 @@ input {
 
 }
 
+.download-button button {
+  padding: 12px 20px; 
+    background-color: #ca0001;
+    color: white;
+    font-size: 18px; 
+    font-weight: bold;
+    border-radius: 10px;
+    border-color: #ca0001;
+    margin: 0%;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.3s, color 0.3s; 
+}
+
+.download-button button:hover {
+  transform: scale(1.25);
+  background-color: white;
+  color: #ca0001;
+}
+
+.download-button button:active {
+  transform: scale(0.70); 
+}
+
+
 #homebutton {
 padding-right: 20px;
 padding-bottom: 10px;
@@ -22,9 +47,20 @@ font-weight: 1000%;
 border-radius: 10px;
 border-color: #ca0001;
 margin: 0%;
+transition: transform 0.2s, background-color 0.3s, color 0.3s; 
 }
 
-#navbutton {
+#homebutton:hover {
+  transform: scale(1.25);
+  background-color: white;
+  color: #ca0001;
+}
+
+#homebutton:active {
+  transform: scale(0.70); 
+}
+
+.navbutton {
   width: 60%;
   background-color: #ca0001;
   color: white;
@@ -39,7 +75,35 @@ margin: 0%;
   border-radius: 10px;
   text-shadow: 2px 2px 4px #000000;
   box-shadow: 3px 3px 5px #000000;
+  transition: transform 0.7s, background-color 0.3s, color 0.3s ; 
+  animation: slideInFromRight 1s ease-out forwards;
+  opacity: 0;
 }
+
+#navbutton1 {
+  animation-delay: 0.1s; 
+}
+
+#navbutton2 {
+  animation-delay: 0.4s; 
+}
+
+#navbutton3 {
+  animation-delay: 0.8s; 
+}
+
+.navbutton:hover {
+  transform: scale(1.05) !important;
+  background-color: white;
+  color: #ca0001;
+  
+}
+
+.navbutton:active {
+  transform: scale(0.70); 
+}
+
+
 
 #home {
   display: flex;
@@ -51,13 +115,17 @@ margin: 0%;
   margin: auto;
   padding: 25px;
   border-radius: 8px;
+  animation: fadeInFromTop 1s ease-out;
 }
+
+
 
 
 #title {
   font-size: 50px;
   color: #ca0001;
   text-shadow: 1px 1px 2px #000000;
+  animation: fadeInFromTop 1s ease-out;
 }
 
 #heading2 {
@@ -69,6 +137,7 @@ margin: 0%;
 #description {
   font-size: 20px;
   text-align: center;
+  animation: slideInFromLeft 1s ease-out;
 }
 
 #budgetcontainer{
@@ -185,6 +254,17 @@ color: white;
 font-size: 20px;
 text-shadow: 1px 1px 2px #000000;
 box-shadow: 3px 3px 5px #000000;
+transition: transform 0.3s, background-color 0.3s, color 0.3s;
+}
+
+#budgetdisplay button:hover {
+  transform: scale(1.15);
+  background-color: white;
+  color: #ca0001;
+}
+
+#budgetdisplay button:active {
+  transform: scale(0.70); 
 }
 
 #budgetform button {
@@ -199,6 +279,17 @@ box-shadow: 3px 3px 5px #000000;
   font-size: 20px;
   text-shadow: 1px 1px 2px #000000;
   box-shadow: 3px 3px 5px #000000;
+  transition: transform 0.3s, background-color 0.3s, color 0.3s;
+}
+
+#budgetform button:hover {
+  transform: scale(1.15);
+  background-color: white;
+  color: #ca0001;
+}
+
+#budgetform button:active {
+  transform: scale(0.70); 
 }
 
 #contactusbutton {
@@ -213,4 +304,48 @@ box-shadow: 3px 3px 5px #000000;
   border-color: #ca0001;
   text-shadow: 1px 1px 2px #000000;
   box-shadow: 3px 3px 5px #000000;
+  transition: transform 0.2s, background-color 0.3s, color 0.3s; 
+}
+
+#contactusbutton:hover {
+  transform: scale(1.25);
+  background-color: #ca0001;
+  color: white;
+}
+
+#contactusbutton:active {
+  transform: scale(0.70); 
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

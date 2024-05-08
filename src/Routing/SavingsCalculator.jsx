@@ -217,7 +217,7 @@ function SavingsCalculator() {
                     />
                 )}
             </div>
-            <br/>
+            <br />
             <div id="savingsdisplay">
                 {savingsSummary && (
                     <div>
@@ -241,10 +241,13 @@ function SavingsCalculator() {
                         <div className="download-button">
                             <PDFDownloadLink document={MyDocument} fileName="savings_plan.pdf">
                                 {({ blob, url, loading, error }) =>
-                                    loading ? 'Loading document...' : 'Download Your Plan Here'
+                                    <button>
+                                        {loading ? 'Loading document...' : 'Download Your Plan Here'}
+                                    </button>
                                 }
                             </PDFDownloadLink>
                         </div>
+
                     </div>
                 )}
             </div>

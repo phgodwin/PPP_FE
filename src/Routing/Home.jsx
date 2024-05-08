@@ -12,9 +12,9 @@ function Home() {
             </div>
             <br />
             <div id="home">
-                <button id="navbutton" onClick={() => navigate("/savings-calculator")}>Savings Calculator</button>
-                <button id="navbutton" onClick={() => navigate("/budget-planner")}>Budget Planner</button>
-                <button id="navbutton" onClick={() => navigate("/saving-tips")}>Money Saving Tips</button>
+                <button id="navbutton1" className="navbutton" onClick={() => navigate("/savings-calculator")}>Savings Calculator</button>
+                <button id="navbutton2" className="navbutton" onClick={() => navigate("/budget-planner")}>Budget Planner</button>
+                <button id="navbutton3" className="navbutton" onClick={() => navigate("/saving-tips")}>Money Saving Tips</button>
             </div>
 
             <button id="contactusbutton" onClick={() => navigate("/contact-us")}>Contact Us</button>

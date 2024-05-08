@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PDFDownloadLink, Document, Page, Text, View, StyleSheet  } from '@react-pdf/renderer';
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ function BudgetPlanner() {
             margin: 10,
             padding: 10,
             flexGrow: 1,
-            alignItems: 'center', // Center content vertically
+
         },
         headingContainer: {
             justifyContent: 'center',
@@ -32,16 +32,21 @@ function BudgetPlanner() {
         heading: {
             fontSize: 18,
             fontWeight: 'bold',
-            marginBottom: 10,
             color: '#333',
             textAlign: 'center',
+            textDecoration: 'underline',
+            marginTop: 10,
+            marginBottom: 20,
+            alignItems: 'center',
         },
         text: {
-            fontSize: 12,
-            marginBottom: 5,
-            color: '#555', // Medium dark text color
+            fontSize: 18,
+            marginBottom: 20,
+            color: '#333',
+            textAlign: 'left',
         },
     });
+
 
     useEffect(() => {
         getOutgoings();
@@ -84,12 +89,12 @@ function BudgetPlanner() {
 
     const MyDocument = (
         <Document>
-            <Page>
+            <Page style={styles.page}>
                 <View style={styles.section}>
-                    <Text style={styles.heading}>Budget Summary</Text>
-                    <Text>Total Income: £{totalIncome}</Text>
-                    <Text>Total Outgoings: £{totalOutgoings}</Text>
-                    <Text>Disposable Income: £{totalIncome - totalOutgoings}</Text>
+                    <Text style={[styles.heading, {}]}>Budget Summary</Text>
+                    <Text style={styles.text}>Total <Text style={{ color: 'red', textDecoration: 'underline' }}>Income:</Text> £{totalIncome}</Text>
+                    <Text style={styles.text}>Total <Text style={{ color: 'red', textDecoration: 'underline' }}>Outgoings:</Text> £{totalOutgoings}</Text>
+                    <Text style={styles.text}>Disposable <Text style={{ color: 'red', textDecoration: 'underline' }}>Income:</Text> £{totalIncome - totalOutgoings}</Text>
                 </View>
             </Page>
         </Document>
@@ -109,14 +114,14 @@ function BudgetPlanner() {
                         <input type="number" value={takeHomePay} onChange={e => setTakeHomePay(e.target.value)} />
                         <label>Additional Income:</label>
                         <input type="number" value={additionalIncome} onChange={e => setAdditionalIncome(e.target.value)} />
-                        <button type="submit">Submit</button>
+                        <button className='submitbutton' type="submit">Submit</button>
                     </form>
                 )}
                 {isSubmitted && (
                     <div id="budgetdisplay">
                         <h2 id="heading2">Your Total Income is </h2>
                         <h1>£{totalIncome}</h1>
-                        <button onClick={() => setIsSubmitted(false)}>Edit</button>
+                        <button className='editbutton' onClick={() => setIsSubmitted(false)}>Edit</button>
                     </div>
                 )}
                 <form id="budgetform" onSubmit={handleSubmitOutgoing}>
@@ -124,7 +129,7 @@ function BudgetPlanner() {
                     <input type="text" value={name} onChange={e => setName(e.target.value)} />
                     <label>Outgoing Cost:</label>
                     <input type="number" value={cost} min={0} onChange={e => setCost(e.target.value)} />
-                    <button type="submit">Submit</button>
+                    <button className='submitbutton' type="submit">Submit</button>
                 </form>
             </div>
             <br />
@@ -154,10 +159,12 @@ function BudgetPlanner() {
                     )}
                 </div>
             </div>
-            <div>
+            <div className="download-button" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <PDFDownloadLink document={MyDocument} fileName="savings_plan.pdf">
                     {({ blob, url, loading, error }) =>
-                        loading ? 'Loading document...' : 'Download Savings Plan'
+                        <button>
+                            {loading ? 'Loading document...' : 'Download Savings Plan'}
+                        </button>
                     }
                 </PDFDownloadLink>
             </div>
