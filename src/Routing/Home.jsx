@@ -6,7 +6,7 @@ function Home() {
 
     return (
         <div>
-            <div id="home2">
+            <div id="home">
                 <h1 id="title">Welcome to Penny Pinch Pal!</h1>
                 <p id="description">This app is designed to help you manage your money better. You can use the Savings Calculator to see how much you can save over time, the Budget Planner to keep track of your expenses, and the Money Saving Tips for some helpful guidance on where you can make savings.</p>
             </div>
