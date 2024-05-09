@@ -1,38 +1,356 @@
-.App {
+
+
+body {
+  background-color: rgba(245, 239, 239, 0.774);
+  font-family: Helvetica, sans-serif;
+  
+}
+
+input {
+  font-size: 20px;
+
+}
+
+.download-button button {
+  padding: 12px 20px; 
+    background-color: #ca0001;
+    color: white;
+    font-size: 18px; 
+    font-weight: bold;
+    border-radius: 10px;
+    border-color: #ca0001;
+    margin: 0%;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.3s, color 0.3s; 
+}
+
+.download-button button:hover {
+  transform: scale(1.25);
+  background-color: white;
+  color: #ca0001;
+}
+
+.download-button button:active {
+  transform: scale(0.70); 
+}
+
+
+#homebutton {
+padding-right: 20px;
+padding-bottom: 10px;
+padding-left: 15px;
+background-color: #ca0001;
+color: white;
+font-size:80px;
+font-weight: 1000%;
+border-radius: 10px;
+border-color: #ca0001;
+margin: 0%;
+transition: transform 0.2s, background-color 0.3s, color 0.3s; 
+}
+
+#homebutton:hover {
+  transform: scale(1.25);
+  background-color: white;
+  color: #ca0001;
+}
+
+#homebutton:active {
+  transform: scale(0.70); 
+}
+
+.navbutton {
+  width: 60%;
+  background-color: #ca0001;
+  color: white;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin: 10px;
+ 
+  font-size: 80px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ca0001;
+  border-radius: 10px;
+  text-shadow: 2px 2px 4px #000000;
+  box-shadow: 3px 3px 5px #000000;
+  transition: transform 0.7s, background-color 0.3s, color 0.3s ; 
+  animation: slideInFromRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+#navbutton1 {
+  animation-delay: 0.1s; 
+}
+
+#navbutton2 {
+  animation-delay: 0.4s; 
+}
+
+#navbutton3 {
+  animation-delay: 0.8s; 
+}
+
+.navbutton:hover {
+  transform: scale(1.05) !important;
+  background-color: white;
+  color: #ca0001;
+  
+}
+
+.navbutton:active {
+  transform: scale(0.70); 
+}
+
+
+
+#home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  max-width: 70%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
+  animation: fadeInFromTop 1s ease-out;
+}
+
+
+
+
+#title {
+  font-size: 50px;
+  color: #ca0001;
+  text-shadow: 1px 1px 2px #000000;
+  animation: fadeInFromTop 1s ease-out;
+}
+
+#heading2 {
+  font-size: 35px;
+  color: #ca0001;
+  text-shadow: 1px 1px 2px #000000;
+}
+
+#description {
+  font-size: 20px;
+  text-align: center;
+  animation: slideInFromLeft 1s ease-out;
+}
+
+#budgetcontainer{
+  display: flex;
+  justify-content: space-around;
+}
+
+#budgetdisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  max-width: 70%;
+  width: 30%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
+  font-size: larger;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#tipdisplay {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 70%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#budgetentriescontainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 70%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#budgetform {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  background-color: white;
+  width: 30%;
+  margin: auto;
+  padding: 50px;
+  border-radius: 8px;
+font-size: 25px;
+text-align: center;
+}
+
+#savingsform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 30%;
+  margin: auto;
+  padding: 50px;
+  border-radius: 8px;
+  font-size: 25px;
+}
+
+#savingsform input {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ca0001;
+  width: 80%;
+  font-family: Helvetica, sans-serif;
+}
+
+#savingsdisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  max-width: 70%;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
+  font-size: 25px;
+  text-align: center;
+}
+
+#budgetform input {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ca0001;
+  width: 80%;
+}
+#budgetdisplay button {
+margin: 10px;
+padding: 10px;
+border-radius: 5px;
+border-width: 1px;
+border-style: solid;
+border-color: #ca0001;
+background-color: #ca0001;
+color: white;
+font-size: 20px;
+text-shadow: 1px 1px 2px #000000;
+box-shadow: 3px 3px 5px #000000;
+transition: transform 0.3s, background-color 0.3s, color 0.3s;
+}
+
+#budgetdisplay button:hover {
+  transform: scale(1.15);
+  background-color: white;
+  color: #ca0001;
+}
+
+#budgetdisplay button:active {
+  transform: scale(0.70); 
+}
+
+#budgetform button {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ca0001;
+  background-color: #ca0001;
+  color: white;
+  font-size: 20px;
+  text-shadow: 1px 1px 2px #000000;
+  box-shadow: 3px 3px 5px #000000;
+  transition: transform 0.3s, background-color 0.3s, color 0.3s;
+}
+
+#budgetform button:hover {
+  transform: scale(1.15);
+  background-color: white;
+  color: #ca0001;
+}
+
+#budgetform button:active {
+  transform: scale(0.70); 
+}
+
+#contactusbutton {
+  background-color: white;
+  color:  #ca0001;
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ca0001;
+  text-shadow: 1px 1px 2px #000000;
+  box-shadow: 3px 3px 5px #000000;
+  transition: transform 0.2s, background-color 0.3s, color 0.3s; 
+}
+
+#contactusbutton:hover {
+  transform: scale(1.25);
+  background-color: #ca0001;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#contactusbutton:active {
+  transform: scale(0.70); 
 }
 
-@keyframes App-logo-spin {
+#team-picture{
+  margin: auto;
+  width: 90%;
+}
+
+@keyframes slideInFromRight {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateX(100%);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
