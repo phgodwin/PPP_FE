@@ -106,7 +106,7 @@ function BudgetPlanner() {
         </Document>
     );
 
-    // Function to clear outgoings data
+    
     function clearOutgoings() {
         axios.delete("http://localhost:8090/Outgoing/clearOutgoings")
             .then((response) => {
