@@ -1,10 +1,38 @@
-# Getting Started with Create React App
+# Welcome to PPP (Penny Pinch Pal)! - Open Source React.js Money Saving Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+PPP is an open-source React.js application designed to help users save money effectively. With a sleek and user-friendly frontend interface, PPP empowers users to manage their finances efficiently.
 
-In the project directory, you can run:
+The main scope of this project was to test GitHub Co-Pilot functionalities and code enhancement capabilites.
+
+For end-to-end functionality, please refer to our Backend repository https://github.com/phgodwin/PPP_BE.
+
+### Key Features:
+  - Savings Calculator: Estimate and visualize your savings goals to stay on track.
+  - Budget Planner: Create personalized budgets and effortlessly manage your expenses.
+  - Money Saving Tips: Access a variety of tips and tricks to help you save more effectively.
+git pull
+![Screenshot](shot0.png)
+
+### Additional Documentation
+  - To understand the structure and behaviour of our APIs, please refer to our Swagger documentation link http://localhost:8082/swagger-ui/index.html#/
+
+### Contribuitions and Ongoing Development
+  This project remains Open Source and all contribuitions/suggestions from the community are welcome. Feel free to fork the repository, make your improvements, and submit a pull request.
+  
+### Current Contributors
+  - https://github.com/Anna-Elisabeth
+  - https://github.com/Liliano-Balde
+
+### Issues and Feedback:
+  - If you encounter any issues or have feedback, please don't hesitate to open an issue on GitHub. Your input helps us improve PPP for everyone.
+
+### Getting Started
+  - Front-End Prerequisites:
+    - Node.js and npm
+    - Text Editor or IDE
+    - Version Control (e.g. Git)
 
 ### `npm start`
 
