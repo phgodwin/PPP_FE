@@ -13,8 +13,8 @@ For end-to-end functionality, please refer to our Backend repository https://git
   - Budget Planner: Create personalized budgets and effortlessly manage your expenses.
   - Money Saving Tips: Access a variety of tips and tricks to help you save more effectively.
 
-<img src="/public/shot0.PNG" alt="Screenshot 0" width="400"/> <img src="/public/shot1.PNG" alt="Screenshot 1" width="400"/> <br>
-<img src="/public/shot2.PNG" alt="Screenshot 2" width="400"/> <img src="/public/shot3.PNG" alt="Screenshot 3" width="400"/>
+<img src="/public/shot0.PNG" alt="Screenshot 0" width="400" height="150" /> <img src="/public/shot1.PNG" alt="Screenshot 1" width="400" height="150"/> <br>
+<img src="/public/shot2.PNG" alt="Screenshot 2" width="400" height="150"/> <img src="/public/shot3.PNG" alt="Screenshot 3" width="400" height="150"/>
 
 ### Additional Documentation
   - To understand the structure and behaviour of our APIs, please refer to our Swagger documentation link http://localhost:8089/swagger-ui/index.html#/
