@@ -135,7 +135,7 @@ function BudgetPlanner() {
                 {isSubmitted && (
                     <div id="budgetdisplay">
                         <h2 id="heading2">Your Total Income is </h2>
-                        <h1>£{totalIncome}</h1>
+                        <h1>£{parseFloat(totalIncome).toFixed(2)}</h1>
                         <button className='editbutton' onClick={() => setIsSubmitted(false)}>Edit</button>
                     </div>
                 )}
@@ -154,20 +154,20 @@ function BudgetPlanner() {
                     <ul>
                         {outgoings.map((outgoing) => (
                             <li key={outgoing.id}>
-                                {outgoing.name}: £{outgoing.cost}
+                                {outgoing.name}: £{parseFloat(outgoing.cost).toFixed(2)}
                                 <button onClick={() => deleteOutgoing(outgoing.id)}>X</button>
                             </li>
                         ))}
                     </ul>
-                    <h3>Total Outgoings: £{totalOutgoings}</h3>
+                    <h3>Total Outgoings: £{parseFloat(totalOutgoings).toFixed(2)}</h3>
                 </div>
                 <div id="budgetdisplay">
                     <h2 id="heading2">Your Disposable Income Is</h2>
                     {isSubmitted ? (
                         (totalIncome - totalOutgoings) >= 0 ? (
-                            <h1>£{totalIncome - totalOutgoings}</h1>
+                            <h1>£{parseFloat(totalIncome - totalOutgoings).toFixed(2)}</h1>
                         ) : (
-                            <h1 style={{ color: "red" }}>£{totalIncome - totalOutgoings}</h1>
+                            <h1 style={{ color: "red" }}>£{parseFloat(totalIncome - totalOutgoings).toFixed(2)}</h1>
                         )
                     ) : (
                         <h3>Please Submit Your Pay Details Above</h3>

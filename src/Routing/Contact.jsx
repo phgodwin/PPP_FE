@@ -5,6 +5,7 @@ function Contact() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [showImage, setShowImage] = useState(false); // Add state for image visibility
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,9 +18,13 @@ function Contact() {
           });
           console.log('Message sent successfully!');
 
-          setName('');
+        setName('');
         setEmail('');
         setMessage('');
+        setShowImage(true); // Show the image
+        setTimeout(() => {
+        setShowImage(false); // Hide the image after 5 seconds
+        }, 10000);
           return
         }catch (error){
             console.error('Error sending message:', error);
@@ -29,6 +34,13 @@ function Contact() {
         const navigate = useNavigate();
     return (
         <> <button id="homebutton" onClick={() => navigate("/")}>&#11013;</button>
+
+            {showImage && (
+                <div className="flash-image" id="team-picture">
+                    <img src="/asset/FinalTeamPicture.jpg" alt="Flash Image" width="95%"/>
+                </div>
+            )}
+
         <section >
             <div id="savingsdisplay">
                 <h2 id="title">Get in touch!</h2>
