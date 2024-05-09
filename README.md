@@ -13,10 +13,10 @@ For end-to-end functionality, please refer to our Backend repository https://git
   - Budget Planner: Create personalized budgets and effortlessly manage your expenses.
   - Money Saving Tips: Access a variety of tips and tricks to help you save more effectively.
 git pull
-![Screenshot](shot0.png)
+![Screenshot](/public/shot0.PNG)
 
 ### Additional Documentation
-  - To understand the structure and behaviour of our APIs, please refer to our Swagger documentation link http://localhost:8082/swagger-ui/index.html#/
+  - To understand the structure and behaviour of our APIs, please refer to our Swagger documentation link http://localhost:8089/swagger-ui/index.html#/
 
 ### Contribuitions and Ongoing Development
   This project remains Open Source and all contribuitions/suggestions from the community are welcome. Feel free to fork the repository, make your improvements, and submit a pull request.
