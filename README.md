@@ -22,8 +22,11 @@ git pull
   This project remains Open Source and all contribuitions/suggestions from the community are welcome. Feel free to fork the repository, make your improvements, and submit a pull request.
   
 ### Current Contributors
-  - https://github.com/Anna-Elisabeth
+  - https://github.com/phgodwin
   - https://github.com/Liliano-Balde
+  - https://github.com/Sailesh-Patel
+  - https://github.com/rickmiles85
+  - https://github.com/nathanl24
 
 ### Issues and Feedback:
   - If you encounter any issues or have feedback, please don't hesitate to open an issue on GitHub. Your input helps us improve PPP for everyone.
