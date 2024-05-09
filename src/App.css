@@ -317,6 +317,11 @@ transition: transform 0.3s, background-color 0.3s, color 0.3s;
   transform: scale(0.70); 
 }
 
+#team-picture{
+  margin: auto;
+  width: 90%;
+}
+
 @keyframes slideInFromRight {
   from {
     opacity: 0;
