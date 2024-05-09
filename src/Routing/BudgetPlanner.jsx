@@ -49,7 +49,13 @@ function BudgetPlanner() {
 
 
     useEffect(() => {
+        
         getOutgoings();
+        
+        
+        return () => {
+            clearOutgoings(); 
+        };
     }, []);
 
     function getOutgoings() {
@@ -99,6 +105,15 @@ function BudgetPlanner() {
             </Page>
         </Document>
     );
+
+    // Function to clear outgoings data
+    function clearOutgoings() {
+        axios.delete("http://localhost:8090/Outgoing/clearOutgoings")
+            .then((response) => {
+                setOutgoings([]); 
+            })
+            .catch((error) => console.log(error));
+    }
 
     return (
         <>
@@ -160,7 +175,7 @@ function BudgetPlanner() {
                 </div>
             </div>
             <div className="download-button" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <PDFDownloadLink document={MyDocument} fileName="savings_plan.pdf">
+                <PDFDownloadLink document={MyDocument} fileName="budget_plan.pdf">
                     {({ blob, url, loading, error }) =>
                         <button>
                             {loading ? 'Loading document...' : 'Download your Budget plan here'}
